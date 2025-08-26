@@ -1,0 +1,84 @@
+/* Nav.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 20px 20px;
+    color: #fff;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .header__left h2 {
+    margin-top: 12px;
+  }
+  
+  .header__center a, .header__right a {
+    text-decoration: none;
+    color: inherit; /* To inherit the color from the parent element */
+  }
+
+  .header__left, .header__center, .header__right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header__left .logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .header__center {
+    flex-grow: 1;
+    justify-content: center;
+  }
+  
+  .header__center p {
+    margin: 0 15px;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .header__center p:hover {
+    color: #fff;
+  }
+  
+  .header__right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header__right img {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+  
+  .header__right p {
+    margin: 0 15px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .header__right p:hover {
+    color: #fff;
+  }
+  
+  /* Active tab styling */
+  .active {
+    color: #00aced;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #614d99;
+    border-radius: 5%;
+  }
+
+  

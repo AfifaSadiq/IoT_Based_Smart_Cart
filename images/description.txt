@@ -1,0 +1,16 @@
+Image Description
+
+1. Home page
+2. Weight data sent and displayed
+3. Product scanned, weight matched, product added successfully
+4. Cart updated displayed on cart details page
+5. Navigated to payment page, total quantity and price displayed
+6. Weight mismatched, product cannot be added
+7. Weight matched, product added
+8. Cart updated displayed on cart details page
+9. Decrease quantity button pressed on cart details page, quantity decreased
+10. Deleting the product, item removed from database also
+11. Pay page
+12. Logout button clicked, redirected to logout, all details cleared if any.
+13. Register/ signup page
+14. Hardware setup
