@@ -12,3 +12,7 @@ https://github.com/user-attachments/assets/68c18daa-de77-4b72-93f3-4e783dc07c78
 Complete Setup
 
 ![WhatsApp Image 2025-08-26 at 5 39 16 PM](https://github.com/user-attachments/assets/2461d711-cac4-4e0f-88ea-bee9f82be975)
+
+
+<img width="2560" height="1600" alt="image" src="https://github.com/user-attachments/assets/efcf095b-ca69-42d0-a3dd-ad2b493e44af" />
+
