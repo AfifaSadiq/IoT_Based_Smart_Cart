@@ -27,7 +27,7 @@ const Home = () => {
 
   // Use useEffect to set up a polling mechanism
   useEffect(() => {
-    const intervalId = setInterval(fetchWeightData, 5000); // Fetch every 5 seconds
+    const intervalId = setInterval(fetchWeightData, 2000); // Fetch every 2 seconds
     return () => clearInterval(intervalId); 
   }, []);
 
