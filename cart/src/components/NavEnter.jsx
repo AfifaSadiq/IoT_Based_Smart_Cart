@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import "./Nav.css";
 import icon from '../assets/icon.png';
+import user from '../assets/profile-user.png';
 
 const NavEnter = () => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -15,7 +16,7 @@ const NavEnter = () => {
         </div>
         
         <div className="header__right">
-            <img src="/src/assets/profile-user.png" alt="user" />
+            <img src={user} alt="user" />
             <Link to="/login">
                 <p className={`${activeTab === "Login" ? "active" : ""}`} onClick={() => setActiveTab("Login")}>
                     LogIn

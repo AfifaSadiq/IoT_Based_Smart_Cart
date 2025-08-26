@@ -4,6 +4,7 @@ import { handleLogout } from "../Utils/LogOut";
 import { Menu, X, Home, ShoppingCart, CreditCard, LogOut } from "lucide-react";
 import "./Nav.css";
 import icon from '../assets/icon.png';
+import user from '../assets/profile-user.png';
 
 const Nav = () => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -60,7 +61,7 @@ const Nav = () => {
         </Link>
       </div>
       <div className="header__right">
-        <img src="/src/assets/profile-user.png" alt="user" />
+        <img src={user} alt="user" />
       </div>
     </div>
   );
