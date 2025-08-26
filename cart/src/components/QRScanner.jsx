@@ -3,6 +3,7 @@ import { Html5QrcodeScanner } from 'html5-qrcode';
 import { useNavigate } from 'react-router-dom';
 import './QRScanner.css';
 import Nav from './Nav';
+import { ScanLine } from 'lucide-react';
 
 const QRScanner = ({ weightData }) => {
   const [scanResult, setScanResult] = useState(null);
@@ -12,12 +13,13 @@ const QRScanner = ({ weightData }) => {
   const [lastWeight, setLastWeight] = useState(null); // Track the last weight
   const [lastScannedProduct, setLastScannedProduct] = useState(null); // Track last scanned product
   const navigate = useNavigate();
+  const BE_URL = import.meta.env.VITE_BE_URL;
 
   // Fetch payInfo when the component loads
   useEffect(() => {
     const fetchPayInfo = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/pay-info');
+        const response = await fetch(`${BE_URL}/api/pay-info`);
         const data = await response.json();
         setPayInfo(data);
         setLoading(false);
@@ -60,7 +62,7 @@ const QRScanner = ({ weightData }) => {
   // Fetch product details based on scanned product ID
   const fetchProductDetails = async (pid) => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${pid}`);
+      const response = await fetch(`${BE_URL}/products/${pid}`);
       const data = await response.json();
       setProductDetails(data);
       console.log("Fetched Product Details:", data);
@@ -98,7 +100,7 @@ const QRScanner = ({ weightData }) => {
       }
 
       // Proceed to add the product to the cart
-      const response = await fetch('http://localhost:3000/api/cart', {
+      const response = await fetch(`${BE_URL}/api/cart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -115,7 +117,7 @@ const QRScanner = ({ weightData }) => {
       console.log('Added to Cart:', data);
 
       // Update details in the backend
-      const updateResponse = await fetch('http://localhost:3000/api/add-to-details', {
+      const updateResponse = await fetch(`${BE_URL}/api/add-to-details`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -157,18 +159,29 @@ const QRScanner = ({ weightData }) => {
       </div>
       <div className="product-section">
         <h2>Product ID and Details</h2>
-        {scanResult && (
-          <div>
-            <p>Product ID: {scanResult}</p>
+        {!scanResult && (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#614d99', marginTop: 24 }}>
+            <ScanLine size={64} />
+            <span style={{ marginTop: 12, fontWeight: 500 }}>Scan a product to see details</span>
           </div>
         )}
-        {productDetails && (
-          <div>
-            <p>Title: {productDetails.title}</p>
-            <p>Weight: {productDetails.weight}</p>
-            <p>Price: {productDetails.price}</p>
+
+        {/* If scan result is available but no product details */}
+        {scanResult && !productDetails && (
+          <div style={{ color: '#b85c00', fontWeight: 500, marginTop: 24 }}>
+            Scan valid QR code
           </div>
         )}
+        {scanResult && productDetails && (
+          <div>
+            <p><b style={{ color: '#ffffff' }}>Product ID: {scanResult}</b></p>
+            <p style={{ backgroundColor: '#ec9b65ff'}}><b>Title: {productDetails.title}</b></p>
+            <p style={{ backgroundColor: '#90c6d3ff'}}><b>Weight: {productDetails.weight} Kg</b></p>
+            <p style={{ backgroundColor: '#f37abdff'}}><b>Price: Rs. {productDetails.price}</b></p>
+          </div>
+        )}
+
+
       </div>
       <div className="button-section">
         <button className="add-to-cart-button" onClick={addToCart}>Add to Cart</button>

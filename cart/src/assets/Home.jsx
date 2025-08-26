@@ -5,28 +5,30 @@ import '../components/QRScanner.css';
 import WScale from '../components/WScale';
 
 const Home = () => {
-  const [weightData, setWeightData] = useState(null); // State to hold weight data
-  const [error, setError] = useState(null); // State to hold any error
-
-  // Function to fetch weight data from the backend
+  const [weightData, setWeightData] = useState(null); 
+  const [error, setError] = useState(null); 
+  const [lastFetchTime, setLastFetchTime] = useState(null);
+  const BE_URL = import.meta.env.VITE_BE_URL;
   const fetchWeightData = async () => {
     try {
-      const response = await fetch('http://localhost:3000/getLatestWeight'); // Use the correct server IP
+      const response = await fetch(`${BE_URL}/getLatestWeight`); 
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      setWeightData(data); // Update state with the fetched data
+      setWeightData(data); 
+      setLastFetchTime(new Date());
     } catch (error) {
       setError(error.message);
       console.error('Error fetching weight data:', error);
+      setLastFetchTime(new Date());
     }
   };
 
   // Use useEffect to set up a polling mechanism
   useEffect(() => {
-    const intervalId = setInterval(fetchWeightData, 2000); // Fetch every 2 seconds
-    return () => clearInterval(intervalId); // Clean up the interval on component unmount
+    const intervalId = setInterval(fetchWeightData, 5000); // Fetch every 5 seconds
+    return () => clearInterval(intervalId); 
   }, []);
 
   return (
@@ -37,13 +39,20 @@ const Home = () => {
         <div className="weight-section">
           <h2>Weight Data from Load Cells and ESP8266</h2>
           <WScale weight={weightData ? weightData.weight : 0} />
-          {error ? (
+          {error && (
             <p className="weight-data-placeholder">Error: {error}</p>
-          ) : (
-            <p className="weight-data-placeholder">
-              {weightData ? `Weight: ${weightData.weight} KG` : 'Loading...'}
-            </p>
           )}
+          <div className="weight-data-time">
+            <span>
+              <span className="weight-data-placeholder">
+                {weightData ? `Weight: ${weightData.weight} KG` : 'Loading...'}
+              </span>
+              <br />
+              {lastFetchTime && (
+                <>Last updated: {lastFetchTime.toLocaleTimeString()}</>
+              )}
+            </span>
+          </div>
         </div>
         
       </div>

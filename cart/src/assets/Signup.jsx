@@ -9,10 +9,11 @@ const Signup = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const navigate = useNavigate()
+    const BE_URL = import.meta.env.VITE_BE_URL;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3000/register', {name, email, password})
+        axios.post(`${BE_URL}/register`, {name, email, password})
             .then(result => {
                 console.log(result);
                 navigate('/login');  // Navigate using only the path

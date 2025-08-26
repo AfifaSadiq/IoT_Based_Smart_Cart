@@ -8,10 +8,11 @@ const Login = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const navigate = useNavigate()
+    const BE_URL = import.meta.env.VITE_BE_URL;
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:3000/login', {email, password})
+        axios.post(`${BE_URL}/login`, {email, password})
         .then(result => {
             console.log(result)
             

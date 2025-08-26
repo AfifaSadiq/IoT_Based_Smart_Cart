@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 export const handleLogout = async (navigate) => {
   try {
     // Clear items database
-    const clearItemsResponse = await fetch("http://localhost:3000/api/items", {
+    const clearItemsResponse = await fetch(`${BE_URL}/api/items`, {
       method: "DELETE",
     });
 
@@ -13,7 +13,7 @@ export const handleLogout = async (navigate) => {
     }
 
     // Clear details database
-    const clearDetailsResponse = await fetch("http://localhost:3000/api/remove-details", {
+    const clearDetailsResponse = await fetch(`${BE_URL}/api/remove-details`, {
       method: "DELETE",
     });
 

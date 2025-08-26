@@ -3,11 +3,12 @@ import './CDisp.css';
 
 const CDisp = () => {
   const [cartItems, setCartItems] = useState([]);
+  const BE_URL = import.meta.env.VITE_BE_URL;
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/cart/');
+        const response = await fetch(`${BE_URL}/api/cart/`);
         const data = await response.json();
         console.log('Fetched data:', data); // Log the fetched data
         if (Array.isArray(data)) {
@@ -29,7 +30,7 @@ const CDisp = () => {
   const handleDecrement = async (pid, weight, price) => {
     try {
       // Step 1: Decrement the quantity in Items collection
-      const response = await fetch(`http://localhost:3000/api/cart/${pid}/decrement`, {
+      const response = await fetch(`${BE_URL}/api/cart/${pid}/decrement`, {
         method: 'POST',
       });
       const data = await response.json();
@@ -55,7 +56,7 @@ const CDisp = () => {
   // Function to Decrement Details
   const decDetailsQty = async (weight, price) => {
     try {
-      const response = await fetch('http://localhost:3000/api/decrement-details', {
+      const response = await fetch(`${BE_URL}/api/decrement-details`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ weight, price }), // Send weight and price of one item to decrement
@@ -78,7 +79,7 @@ const CDisp = () => {
       console.log(`Deleting product with PID: ${pid}`);
   
       // Step 1: Delete the product from the cart
-      const response = await fetch(`http://localhost:3000/api/cart/${pid}`, {
+      const response = await fetch(`${BE_URL}/api/cart/${pid}`, {
         method: 'DELETE',
       });
   
@@ -103,7 +104,7 @@ const CDisp = () => {
   // Function to delete product details from Details database
   const delDetailsProduct = async (weight, price, quantity) => {
     try {
-      const response = await fetch('http://localhost:3000/api/delete-from-details', {
+      const response = await fetch(`${BE_URL}/api/delete-from-details`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ weight, price, quantity }), // Send the product's weight, price, and quantity

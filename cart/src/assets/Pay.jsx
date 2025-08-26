@@ -7,12 +7,13 @@ const Pay = () => {
   const [payInfo, setPayInfo] = useState({ username: '', totalQuantity: 0, totalPrice: 0 });
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const BE_URL = import.meta.env.VITE_BE_URL;
 
   useEffect(() => {
     // Fetch user and total quantity info from the backend
     const fetchPayInfo = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/pay-info');
+        const response = await fetch(`${BE_URL}/api/pay-info`);
         const data = await response.json();
         setPayInfo(data);
         setLoading(false);

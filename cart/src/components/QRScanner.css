@@ -48,6 +48,12 @@
     justify-content: space-between;
 }
 
+.product-section p {
+    padding: 10px;
+    background-color: #766c94;
+    border-radius: 10px;
+}
+
 /* Button Section */
 .button-section {
     grid-column: 3 / 4; /* Same 3rd column */
@@ -78,4 +84,56 @@
 .proceed-to-pay-button {
     background-color: #614d99;
     color: white;
+}
+
+.weight-data-time {
+  background: #d4f8e8;
+  border: 2px solid #218838;
+  color: #218838;
+  border-radius: 8px;
+  padding: 10px 18px;
+  margin: 24px auto 0 auto; /* Top margin and center horizontally */
+  display: block;
+  font-weight: 500;
+  font-size: 1.05em;
+  max-width: 90%;
+  box-sizing: border-box;
+}
+
+
+/* Responsive layout for medium screens and below */
+@media (max-width: 900px) {
+    .home-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        height: auto;
+    }
+
+    .QRCodeScanComp,
+    .weight-section,
+    .product-section,
+    .button-section {
+        grid-column: auto;
+        grid-row: auto;
+        width: 100%;
+        height: auto;
+        margin-bottom: 0;
+    }
+
+    .QRCodeScanComp {
+        order: 1;
+    }
+    .weight-section {
+        order: 2;
+    }
+    .product-section {
+        order: 3;
+    }
+    .button-section {
+        order: 4;
+        width: 100%;
+        align-items: stretch;
+    }
 }
