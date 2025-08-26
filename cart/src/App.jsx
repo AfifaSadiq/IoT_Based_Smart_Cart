@@ -23,8 +23,9 @@ const App = () => {
         width: '100%',
     }}
     >
-      <BrowserRouter>
+      <BrowserRouter>.
         <Routes>
+          <Route path='/' element={<Login />}></Route>
           <Route path= '/register' element={<Signup />}></Route>
           <Route path= '/login' element={<Login />}></Route>
           <Route path= '/home' element={<Home />}></Route>
