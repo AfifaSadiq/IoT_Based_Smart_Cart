@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { handleLogout } from "../Utils/LogOut";
 import { Menu, X, Home, ShoppingCart, CreditCard, LogOut } from "lucide-react";
 import "./Nav.css";
+import icon from '../assets/icon.png';
 
 const Nav = () => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -25,7 +26,7 @@ const Nav = () => {
   return (
     <div className="header">
       <div className="header__left">
-        <img className="logo" src="/src/assets/icon.png" alt="cartgo icon" />
+        <img className="logo" src={icon} alt="cartgo icon" />
         <h2>CartGO</h2>
       </div>
       {/* Hamburger for mobile */}

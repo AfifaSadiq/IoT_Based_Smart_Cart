@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import "./Nav.css";
+import icon from '../assets/icon.png';
 
 const NavEnter = () => {
   const [activeTab, setActiveTab] = useState("Home");
@@ -9,7 +10,7 @@ const NavEnter = () => {
   return (
     <div className="header">
         <div className="header__left">
-            <img className="logo" src="/src/assets/icon.png" alt="cartgo icon" />
+            <img className="logo" src={icon} alt="cartgo icon" />
             <h2>CartGO</h2>
         </div>
         
